@@ -1,0 +1,24 @@
+class DocumentEditor:
+    def __init__(self):
+        self.content = ""
+        self.history = []
+
+    def write(self, text):
+        self.history.append(self.content)
+        self.content += text
+        self.history.append(self.content)
+
+    def clear(self):
+        self.content = ""
+        self.history.append(self.content)
+
+    def is_empty(self):
+        return self.content == ""
+
+    def get_last_content(self):
+        if len(self.history) == 0:
+            raise ValueError('No document history '
+                             'available: no operations '
+                             'were done')
+        
+        return self.history[-1]
